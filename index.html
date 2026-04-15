@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ruturaj Sinh Sisodia | DevOps Engineer</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/6e2e5e2e2e.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #0a0e1a;
+      --bg-glass: rgba(20,24,40,0.7);
+      --glass-blur: 18px;
+      --primary: #7f5af0;
+      --primary-neon: #00eaff;
+      --accent: #00eaff;
+      --gradient: linear-gradient(100deg, #7f5af0 0%, #00eaff 100%);
+      --gradient-rev: linear-gradient(100deg, #00eaff 0%, #7f5af0 100%);
+      --text: #f1f1f1;
+      --text-muted: #b0b8d1;
+      --card-bg: rgba(30,34,54,0.6);
+      --card-border: rgba(127,90,240,0.18);
+      --shadow: 0 8px 32px 0 rgba(0,0,0,0.25);
+      --radius: 22px;
+      --transition: 0.35s cubic-bezier(.4,0,.2,1);
+      --ripple: rgba(0,234,255,0.18);
+      --navbar-height: 70px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', 'Fira Mono', Arial, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    /* Particles BG */
+    #particles-bg {
+      position: fixed;
+      z-index: 0;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+    }
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--navbar-height);
+      background: rgba(10,14,26,0.85);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      box-shadow: 0 2px 16px 0 rgba(0,234,255,0.04);
+      border-bottom: 1.5px solid rgba(127,90,240,0.08);
+      transition: background var(--transition);
+    }
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05rem;
+      position: relative;
+      padding: 0.3rem 0.2rem;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2.5px;
+      background: var(--gradient);
+      border-radius: 2px;
+      transition: width var(--transition);
+      position: absolute;
+      left: 0; bottom: -4px;
+    }
+    .nav-links a.active, .nav-links a:hover {
+      color: var(--accent);
+    }
+    .nav-links a.active::after, .nav-links a:hover::after {
+      width: 100%;
+    }
+    .nav-toggle {
+      display: none;
+      font-size: 2rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 0 1.5rem;
+    }
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 0.7rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInDown 1.1s;
+    }
+    .hero-role {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      letter-spacing: 1px;
+      animation: fadeInDown 1.3s;
+    }
+    .hero-typing {
+      font-family: 'Fira Mono', monospace;
+      font-size: 1.1rem;
+      color: var(--accent);
+      min-height: 1.5em;
+      margin-bottom: 2.2rem;
+      animation: fadeIn 1.5s;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 1.7s;
+    }
+    .btn {
+      position: relative;
+      padding: 0.95rem 2.2rem;
+      border-radius: 100px;
+      border: none;
+      font-size: 1.08rem;
+      font-weight: 700;
+      background: var(--gradient);
+      color: var(--bg);
+      box-shadow: 0 4px 24px 0 rgba(0,234,255,0.13);
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+      outline: none;
+      z-index: 1;
+    }
+    .btn:active { transform: scale(0.97);}
+    .btn.secondary {
+      background: var(--bg-glass);
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      box-shadow: 0 4px 24px 0 rgba(127,90,240,0.10);
+    }
+    .btn .fa { margin-right: 0.7rem; }
+    .btn:hover, .btn:focus {
+      box-shadow: 0 8px 32px 0 rgba(127,90,240,0.18), 0 0 16px 2px var(--primary-neon);
+      transform: translateY(-2px) scale(1.04);
+    }
+    .btn:after {
+      content: '';
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%,-50%) scale(0);
+      width: 200%;
+      height: 200%;
+      background: var(--ripple);
+      border-radius: 50%;
+      z-index: 0;
+      transition: transform 0.5s, opacity 0.5s;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .btn.ripple:after {
+      transform: translate(-50%,-50%) scale(1);
+      opacity: 1;
+      transition: transform 0.5s, opacity 0.5s;
+    }
+    /* Section */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem 2.5rem 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    section h2 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2.2rem;
+      text-align: center;
+      letter-spacing: 1.5px;
+    }
+    /* Glass Card */
+    .glass-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      padding: 2.2rem 2.5rem;
+      margin-bottom: 2.5rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .glass-card:hover {
+      transform: translateY(-8px) scale(1.025);
+      box-shadow: 0 12px 48px 0 rgba(127,90,240,0.18), 0 0 24px 2px var(--primary-neon);
+    }
+    /* About */
+    .about-content {
+      font-size: 1.15rem;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.8;
+    }
+    /* Skills */
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .skill-tag {
+      background: var(--gradient-rev);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 1.05rem;
+      border-radius: 100px;
+      padding: 0.7rem 1.5rem;
+      box-shadow: 0 2px 12px 0 rgba(0,234,255,0.10);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-tag:hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 24px 0 rgba(127,90,240,0.18), 0 0 12px 2px var(--primary-neon);
+    }
+    .skills-bars {
+      max-width: 600px;
+      margin: 2rem auto 0 auto;
+    }
+    .skill-bar {
+      margin-bottom: 1.3rem;
+    }
+    .skill-bar-label {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .skill-bar-bg {
+      background: rgba(127,90,240,0.13);
+      border-radius: 100px;
+      height: 13px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: var(--gradient);
+      width: 0;
+      transition: width 1.2s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 0 8px 1px var(--primary-neon);
+    }
+    /* Experience Timeline */
+    .timeline {
+      position: relative;
+      margin-left: 1.5rem;
+      padding-left: 2.5rem;
+      border-left: 3px solid var(--primary);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.8rem;
+      animation: fadeInUp 1.2s;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -2.2rem;
+      top: 0.2rem;
+      width: 1.3rem;
+      height: 1.3rem;
+      background: var(--primary-neon);
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 6px rgba(127,90,240,0.13);
+    }
+    .timeline-role {
+      font-size: 1.13rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .timeline-company {
+      font-size: 1.05rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .timeline-duration {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-desc {
+      color: var(--text);
+      font-size: 1.01rem;
+      margin-top: 0.2rem;
+      line-height: 1.7;
+    }
+    /* Projects */
+    .projects-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      padding: 2rem 2rem 1.5rem 2rem;
+      min-width: 260px;
+      max-width: 340px;
+      flex: 1 1 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      border: 1.5px solid var(--card-border);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 12px 48px 0 rgba(127,90,240,0.18), 0 0 24px 2px var(--primary-neon);
+      border-color: var(--accent);
+    }
+    .project-card i {
+      font-size: 2rem;
+      color: var(--primary-neon);
+      margin-bottom: 0.5rem;
+    }
+    .project-title {
+      font-size: 1.13rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .project-desc {
+      color: var(--text-muted);
+      font-size: 1.01rem;
+    }
+    /* Certifications */
+    .certs-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .cert-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.2rem 2rem;
+      min-width: 200px;
+      max-width: 250px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1.5px solid var(--card-border);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .cert-card:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 8px 32px 0 rgba(127,90,240,0.15);
+      border-color: var(--accent);
+    }
+    .cert-card i {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+    .cert-title {
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+    /* Why Hire Me */
+    .why-hire {
+      background: var(--gradient);
+      color: var(--bg);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 32px 0 rgba(0,234,255,0.13);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.5px;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-hire:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 48px 0 rgba(127,90,240,0.18), 0 0 24px 2px var(--primary-neon);
+    }
+    /* Contact */
+    .contact-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .contact-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.2rem 2rem;
+      min-width: 200px;
+      max-width: 250px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1.5px solid var(--card-border);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      color: var(--text);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 8px 32px 0 rgba(127,90,240,0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .contact-card i {
+      font-size: 1.7rem;
+      color: var(--primary);
+      transition: color var(--transition);
+    }
+    .contact-card:hover i {
+      color: var(--accent);
+    }
+    .contact-label {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    /* Chat Bubble */
+    .chat-bubble {
+      position: fixed;
+      bottom: 2.2rem;
+      right: 2.2rem;
+      z-index: 200;
+      width: 68px;
+      height: 68px;
+      background: var(--gradient);
+      border-radius: 50%;
+      box-shadow: 0 8px 32px 0 rgba(0,234,255,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      animation: floatPulse 2.5s infinite;
+      transition: box-shadow var(--transition), transform var(--transition);
+      overflow: visible;
+    }
+    .chat-bubble:hover {
+      box-shadow: 0 12px 48px 0 rgba(127,90,240,0.25), 0 0 24px 2px var(--primary-neon);
+      transform: scale(1.08) translateY(-4px);
+    }
+    .chat-bubble i {
+      color: var(--bg);
+      font-size: 2rem;
+      transition: color var(--transition);
+    }
+    @keyframes floatPulse {
+      0%, 100% { transform: translateY(0) scale(1);}
+      50% { transform: translateY(-10px) scale(1.08);}
+    }
+    .chat-bubble-message {
+      position: absolute;
+      right: 80px;
+      bottom: 0;
+      background: var(--card-bg);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 1.1rem 1.5rem;
+      font-size: 1.05rem;
+      box-shadow: 0 4px 24px 0 rgba(0,234,255,0.13);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px) scale(0.95);
+      transition: opacity 0.5s, transform 0.5s;
+      z-index: 201;
+      min-width: 220px;
+    }
+    .chat-bubble-message.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+    .chat-bubble-expand {
+      position: fixed;
+      bottom: 2.2rem;
+      right: 2.2rem;
+      z-index: 210;
+      width: 340px;
+      max-width: 95vw;
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: 0 12px 48px 0 rgba(127,90,240,0.18), 0 0 24px 2px var(--primary-neon);
+      padding: 2.2rem 2rem 1.5rem 2rem;
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      animation: springExpand 0.7s cubic-bezier(.22,1.61,.36,1) forwards;
+      overflow: hidden;
+    }
+    @keyframes springExpand {
+      0% { transform: scale(0.6) translateY(80px); opacity: 0;}
+      60% { transform: scale(1.08) translateY(-10px); opacity: 1;}
+      100% { transform: scale(1) translateY(0); opacity: 1;}
+    }
+    .chat-bubble-expand.show {
+      display: flex;
+    }
+    .chat-bubble-expand-header {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary-neon);
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .chat-bubble-expand-body {
+      color: var(--text);
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+    .chat-bubble-close {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.1rem;
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+    .chat-bubble-close:hover { color: var(--primary);}
+    /* Footer */
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1rem;
+      padding: 2rem 1rem 1rem 1rem;
+      background: rgba(20,24,40,0.7);
+      border-top: 1.5px solid var(--card-border);
+      margin-top: 2rem;
+      z-index: 1;
+      position: relative;
+    }
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .projects-grid, .certs-list, .contact-cards, .skills-tags {
+        flex-direction: column;
+        align-items: center;
+      }
+      section {
+        padding: 3rem 1rem 1.5rem 1rem;
+      }
+      .glass-card, .why-hire {
+        padding: 1.5rem 1rem;
+      }
+      .chat-bubble-expand {
+        width: 98vw;
+        right: 1vw;
+        left: 1vw;
+        padding: 1.2rem 0.7rem 1rem 0.7rem;
+      }
+    }
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.7rem 1rem;
+        height: auto;
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        display: none;
+        background: rgba(20,24,40,0.97);
+        margin-top: 0.7rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1rem 0.5rem;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+        margin-left: auto;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .hero-role {
+        font-size: 1rem;
+      }
+      section h2 {
+        font-size: 1.3rem;
+      }
+      .glass-card, .project-card, .cert-card, .contact-card, .why-hire {
+        padding: 1rem 1rem;
+        min-width: unset;
+        max-width: 100%;
+      }
+      .chat-bubble, .chat-bubble-expand {
+        right: 1rem;
+        bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles-bg"></canvas>
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-logo">Ruturaj S. Sisodia</div>
+    <div class="nav-toggle" id="nav-toggle"><i class="fas fa-bars"></i></div>
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#whyhire">Why Hire Me</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-title">Ruturaj Sinh Sisodia</div>
+    <div class="hero-role">DevOps Engineer | Cloud | Python | GenAI</div>
+    <div class="hero-typing" id="typing"></div>
+    <div class="hero-cta">
+      <button class="btn" id="hireMeBtn"><i class="fas fa-paper-plane"></i>Hire Me</button>
+      <a href="resume.pdf" download class="btn secondary"><i class="fas fa-download"></i>View Resume</a>
+    </div>
+  </section>
+  <!-- About -->
+  <section id="about" class="reveal">
+    <h2>About</h2>
+    <div class="glass-card about-content">
+      DevOps Engineer with 2.8+ years of experience designing and managing CI/CD pipelines, cloud infrastructure, and automation frameworks across AWS, Azure, and GCP. Skilled in Infrastructure as Code, containerization (Docker, Kubernetes), and observability practices. Proven ability to improve deployment efficiency, reduce failures, and enhance system reliability through automation and monitoring. Experienced in integrating AI-driven solutions (GenAI, LangChain) into DevOps workflows to optimize incident management and operational intelligence.
+    </div>
+  </section>
+  <!-- Education -->
+  <section id="education" class="reveal">
+    <h2>Education</h2>
+    <div class="glass-card about-content">
+      <strong>Bachelor of Science (Computer Science)</strong>, Reva University (2020 – 2023)<br>
+      8.07 CGPA
+    </div>
+  </section>
+  <!-- Skills -->
+  <section id="skills" class="reveal">
+    <h2>Skills</h2>
+    <div class="glass-card">
+      <div class="skills-tags">
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">Azure</span>
+        <span class="skill-tag">GCP</span>
+        <span class="skill-tag">CI/CD</span>
+        <span class="skill-tag">Jenkins</span>
+        <span class="skill-tag">GitHub Actions</span>
+        <span class="skill-tag">SonarQube</span>
+        <span class="skill-tag">Nexus</span>
+        <span class="skill-tag">JFrog</span>
+        <span class="skill-tag">Bitbucket</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Kubernetes (GKE)</span>
+        <span class="skill-tag">Helm</span>
+        <span class="skill-tag">Istio</span>
+        <span class="skill-tag">Terraform</span>
+        <span class="skill-tag">Ansible</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Shell/Bash</span>
+        <span class="skill-tag">Prometheus</span>
+        <span class="skill-tag">Grafana</span>
+        <span class="skill-tag">ELK Stack</span>
+        <span class="skill-tag">LangChain</span>
+        <span class="skill-tag">RAG</span>
+        <span class="skill-tag">Vector DB</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">Elasticsearch</span>
+      </div>
+      <div class="skills-bars">
+        <div class="skill-bar">
+          <div class="skill-bar-label">AWS / Azure / GCP</div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label">CI/CD & DevOps</div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label">Containers & Orchestration</div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label">Infrastructure as Code & Automation</div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="92%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label">Monitoring & Observability</div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="88%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label">Python & Backend APIs</div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label">AI/LLM (LangChain, RAG, Vector DB)</div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Experience -->
+  <section id="experience" class="reveal">
+    <h2>Experience</h2>
+    <div class="glass-card">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-role">DevOps Engineer</div>
+          <div class="timeline-company">Kyndryl India</div>
+          <div class="timeline-duration">Jul 2023 – Present, Bengaluru, India</div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Developed GenAI-powered ChatOps assistant using LangChain, RAG, and vector DB for automated incident summaries and log analysis.</li>
+              <li>Built LLM-driven AI agents for infrastructure query handling and incident analysis.</li>
+              <li>Designed, implemented, and maintained end-to-end CI/CD pipelines (Jenkins, Groovy) for multi-environment deployments.</li>
+              <li>Managed and optimized cloud infrastructure (AWS, Azure, GCP) for scalability, high availability, and cost efficiency.</li>
+              <li>Implemented Infrastructure as Code (Terraform, Ansible) and configuration automation pipelines.</li>
+              <li>Built Python and Shell automation frameworks for large-scale infra operations (RHEL upgrades, validation pipelines).</li>
+              <li>Integrated quality gates, security checks, and automated testing into CI/CD (SonarQube, Nexus/JFrog).</li>
+              <li>Engineered observability and monitoring solutions (Prometheus, Grafana, ELK Stack), reducing false alerts by 30–35%.</li>
+              <li>Deployed and managed containerized microservices on Kubernetes (GKE) using Helm and Istio.</li>
+              <li>Developed API-driven backup validation systems (Veeam, Rubrik, NetBackup), improving recovery validation speed by 50%.</li>
+              <li>Diagnosed and resolved 680+ critical incidents across 65,000+ servers, reducing recurring failures by 40%.</li>
+              <li>Collaborated with development, QA, and operations teams to improve deployment workflows and system reliability.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Projects -->
+  <section id="projects" class="reveal">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <i class="fas fa-robot"></i>
+        <div class="project-title">GenAI-powered ChatOps Assistant</div>
+        <div class="project-desc">
+          Designed and deployed a ChatOps assistant using LangChain, RAG, and vector DB to analyze infrastructure logs and generate automated incident summaries. Integrated with monitoring APIs and deployed as a Docker container.
+        </div>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-cogs"></i>
+        <div class="project-title">End-to-End CI/CD Pipeline Automation</div>
+        <div class="project-desc">
+          Implemented robust CI/CD pipelines using Jenkins (Declarative & Scripted, Groovy), automating build, test, and deployment workflows across multi-environment setups (Dev, QA, Staging, Production).
+        </div>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <div class="project-title">Cloud Infrastructure & Automation</div>
+        <div class="project-desc">
+          Managed and optimized cloud infrastructure (AWS, Azure, GCP) with Terraform and Ansible, focusing on scalability, high availability, and cost efficiency. Automated large-scale infra operations and monitoring.
+        </div>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-microscope"></i>
+        <div class="project-title">Observability & Monitoring Solutions</div>
+        <div class="project-desc">
+          Engineered observability and monitoring solutions (Prometheus, Grafana, ELK Stack), improving system visibility and reducing false alerts by 30–35%.
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Certifications -->
+  <section id="certifications" class="reveal">
+    <h2>Certifications</h2>
+    <div class="certs-list">
+      <a class="cert-card" href="https://www.credly.com/badges/32e3d44b-9678-45e9-bec2-06a12138559d/public_url" target="_blank">
+        <i class="fas fa-certificate"></i>
+        <div class="cert-title">Google Cloud Professional Machine Learning Engineer</div>
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/32e3d44b-9678-45e9-bec2-06a12138559d/public_url" target="_blank">
+        <i class="fas fa-certificate"></i>
+        <div class="cert-title">Google Cloud Professional Cloud DevOps Engineer</div>
+      </a>
+      <a class="cert-card" href="https://learn.microsoft.com/en-us/users/ruturajsinh-8183/credentials/fd11f469f79ca2cd?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank">
+        <i class="fas fa-certificate"></i>
+        <div class="cert-title">Microsoft Certified: AZ-400 DevOps Engineer Expert</div>
+      </a>
+      <a class="cert-card" href="https://learn.microsoft.com/en-us/users/ruturajsinh-8183/credentials/ae07a68f786d44b5?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank">
+        <i class="fas fa-certificate"></i>
+        <div class="cert-title">Microsoft Certified: AZ-204 Azure Developer Associate</div>
+      </a>
+      <a class="cert-card" href="https://learn.microsoft.com/en-us/users/ruturajsinh-8183/credentials/397deeebee08fa79?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank">
+        <i class="fas fa-certificate"></i>
+        <div class="cert-title">Microsoft Certified: AI-102 Azure AI Engineer Associate</div>
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/ea15857a-32d7-4302-9ebd-860054490f5c/public_url" target="_blank">
+        <i class="fas fa-certificate"></i>
+        <div class="cert-title">AWS Certified AI Practitioner</div>
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/24708946-16d0-4401-9b42-436419f4b311/public_url" target="_blank">
+        <i class="fas fa-certificate"></i>
+        <div class="cert-title">PCAP – Certified Associate Python Programmer</div>
+      </a>
+    </div>
+  </section>
+  <!-- Why Hire Me -->
+  <section id="whyhire" class="reveal">
+    <h2>Why Hire Me</h2>
+    <div class="why-hire">
+      <span style="font-size:1.5em;vertical-align:middle;">🚀</span>
+      I deliver premium, production-grade DevOps solutions with a focus on automation, reliability, and speed. My passion for continuous learning and innovation ensures your infrastructure is always ahead of the curve. Let's build the future together!
+    </div>
+  </section>
+  <!-- Contact -->
+  <section id="contact" class="reveal">
+    <h2>Contact</h2>
+    <div class="contact-cards">
+      <a href="mailto:rsinh2000@gmail.com" class="contact-card" target="_blank">
+        <i class="fas fa-envelope"></i>
+        <span class="contact-label">rsinh2000@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/ruturaj-sisodia" class="contact-card" target="_blank">
+        <i class="fab fa-linkedin"></i>
+        <span class="contact-label">LinkedIn</span>
+      </a>
+      <a href="https://github.com/rsinh2000" class="contact-card" target="_blank">
+        <i class="fab fa-github"></i>
+        <span class="contact-label">GitHub</span>
+      </a>
+      <a href="tel:+919739993484" class="contact-card" target="_blank">
+        <i class="fas fa-phone"></i>
+        <span class="contact-label">+91 9739993484</span>
+      </a>
+    </div>
+  </section>
+  <!-- Chat Bubble -->
+  <div class="chat-bubble" id="chatBubble">
+    <i class="fas fa-comment-dots"></i>
+    <div class="chat-bubble-message" id="chatBubbleMsg">
+      Welcome Recruiter 👋 Making your life easier to hire me
+    </div>
+  </div>
+  <div class="chat-bubble-expand" id="chatBubbleExpand">
+    <button class="chat-bubble-close" id="chatBubbleClose"><i class="fas fa-times"></i></button>
+    <div class="chat-bubble-expand-header"><i class="fas fa-robot"></i>Ruturaj's Assistant</div>
+    <div class="chat-bubble-expand-body">
+      Hi there! 👋<br>
+      Want to know more or get in touch? <br>
+      <ul style="margin:0.7em 0 0 1.2em;">
+        <li>Download my resume</li>
+        <li>Contact me directly</li>
+        <li>See my best projects</li>
+      </ul>
+      <br>
+      <a href="mailto:your.email@example.com" class="btn secondary" style="margin-bottom:0.7em;"><i class="fas fa-envelope"></i>Contact Me</a>
+      <a href="resume.pdf" download class="btn"><i class="fas fa-download"></i>Resume</a>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Ruturaj Sinh Sisodia. All rights reserved.
+  </footer>
+  <!-- JavaScript -->
+  <script>
+    // Navbar toggle for mobile
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+    });
+
+    // Smooth scroll and active link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href').slice(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          e.preventDefault();
+          window.scrollTo({
+            top: targetSection.offsetTop - 60,
+            behavior: 'smooth'
+          });
+          navMenu.classList.remove('open');
+        }
+      });
+    });
+    window.addEventListener('scroll', () => {
+      let fromTop = window.scrollY + 80;
+      navLinks.forEach(link => {
+        let section = document.querySelector(link.getAttribute('href'));
+        if (
+          section.offsetTop <= fromTop &&
+          section.offsetTop + section.offsetHeight > fromTop
+        ) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Typing effect
+    const typingEl = document.getElementById('typing');
+    const typingTexts = [
+      "Cloud Automation Enthusiast.",
+      "DevOps Engineer @ Kyndryl.",
+      "Pythonic Problem Solver.",
+      "CI/CD Pipeline Architect.",
+      "Let's build something amazing."
+    ];
+    let typingIdx = 0, charIdx = 0, typingDir = 1;
+    function typeEffect() {
+      if (typingDir === 1) {
+        if (charIdx < typingTexts[typingIdx].length) {
+          typingEl.textContent += typingTexts[typingIdx][charIdx++];
+          setTimeout(typeEffect, 55 + Math.random()*40);
+        } else {
+          typingDir = -1;
+          setTimeout(typeEffect, 1200);
+        }
+      } else {
+        if (charIdx > 0) {
+          typingEl.textContent = typingTexts[typingIdx].slice(0, --charIdx);
+          setTimeout(typeEffect, 30);
+        } else {
+          typingDir = 1;
+          typingIdx = (typingIdx + 1) % typingTexts.length;
+          setTimeout(typeEffect, 400);
+        }
+      }
+    }
+    setTimeout(typeEffect, 600);
+
+    // Animated skill bars
+    function animateSkillBars() {
+      document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.style.width = bar.getAttribute('data-width');
+      });
+    }
+    let skillsAnimated = false;
+    window.addEventListener('scroll', () => {
+      const skillsSection = document.getElementById('skills');
+      if (!skillsAnimated && skillsSection.getBoundingClientRect().top < window.innerHeight - 100) {
+        animateSkillBars();
+        skillsAnimated = true;
+      }
+    });
+
+    // Reveal on scroll
+    function revealOnScroll() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    // Particles background
+    const canvas = document.getElementById('particles-bg');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    function createParticles() {
+      particles = [];
+      let count = Math.floor(window.innerWidth / 12);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: 1.2 + Math.random() * 2.2,
+          dx: -0.3 + Math.random() * 0.6,
+          dy: -0.3 + Math.random() * 0.6,
+          color: Math.random() > 0.5 ? "#7f5af0" : "#00eaff",
+          alpha: 0.5 + Math.random() * 0.5
+        });
+      }
+    }
+    createParticles();
+    window.addEventListener('resize', createParticles);
+    function drawParticles() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      for (let p of particles) {
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 12;
+        ctx.fill();
+        ctx.restore();
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // Cursor hover effects
+    function addHoverGlow(selector) {
+      document.querySelectorAll(selector).forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          el.style.boxShadow = "0 0 24px 2px var(--primary-neon), 0 8px 32px 0 rgba(127,90,240,0.18)";
+          el.style.transform = "scale(1.04)";
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.boxShadow = "";
+          el.style.transform = "";
+        });
+      });
+    }
+    addHoverGlow('.glass-card, .project-card, .cert-card, .why-hire, .contact-card, .skill-tag');
+
+    // Button ripple effect
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        btn.classList.remove('ripple');
+        void btn.offsetWidth; // reflow
+        btn.classList.add('ripple');
+        setTimeout(() => btn.classList.remove('ripple'), 500);
+      });
+    });
+
+    // Chat bubble logic
+    const chatBubble = document.getElementById('chatBubble');
+    const chatBubbleMsg = document.getElementById('chatBubbleMsg');
+    const chatBubbleExpand = document.getElementById('chatBubbleExpand');
+    const chatBubbleClose = document.getElementById('chatBubbleClose');
+    // Show welcome message on first visit only
+    if (!localStorage.getItem('chatBubbleWelcomed')) {
+      setTimeout(() => {
+        chatBubbleMsg.classList.add('show');
+        setTimeout(() => {
+          chatBubbleMsg.classList.remove('show');
+          localStorage.setItem('chatBubbleWelcomed', '1');
+        }, 3400);
+      }, 1200);
+    }
+    chatBubble.addEventListener('click', () => {
+      chatBubbleExpand.classList.add('show');
+      chatBubble.style.display = 'none';
+    });
+    chatBubbleClose.addEventListener('click', () => {
+      chatBubbleExpand.classList.remove('show');
+      setTimeout(() => {
+        chatBubble.style.display = 'flex';
+      }, 500);
+    });
+
+    // "Hire Me" button scrolls to contact
+    document.getElementById('hireMeBtn').addEventListener('click', () => {
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
